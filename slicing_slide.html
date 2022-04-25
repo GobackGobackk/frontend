@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .banner {
+            width: 100%;
+            /* vh就是當前屏幕可見高度的1%，也就是說
+
+height:100vh == height:100%;
+
+但是當元素沒有內容時候，設置height:100%，該元素不會被撐開，此時高度為0，
+
+但是設置height:100vh，該元素會被撐開屏幕高度一致。 */
+            height: 100vh;
+        }
+
+        .container {}
+
+        .banner-txt {}
+
+        .banner-txt h1 {}
+
+        .banner-txt h1 small {}
+
+        .banner-txt h2 {}
+
+        .banner-txt p {}
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="container">
+            <div class="banner-txt">
+                <h1>
+                    標題
+                    <small>
+                        副標
+                    </small>
+                </h1>
+                <h2>圖文滿版</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis sit itaque harum. Laboriosam
+                    est aliquam corporis enim, ea unde sint nam tempore nesciunt officiis, praesentium accusantium.
+                    Tempora facere hic culpa!</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

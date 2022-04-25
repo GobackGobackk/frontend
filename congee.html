@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /* 把它藏起來 */
+        #menu_control {
+            position: absolute;
+        }
+        /* 最上面的灰色一條 */
+        .header {
+            height: 50px;
+            background-color: #ccc;
+            /* 給menu_btn定位用 */
+            position: relative;
+        }
+        /* 左上角圖片 */
+        .logo {
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        /* 不明原因 a 那裏圖片大小變成60*36 */
+        .logo a {
+            display: block;
+            width: 60px;
+            height: 40px;
+        }
+        /* 其實img的尺寸就是 60 40 */
+        .logo img {
+            display: block
+        }
+        /* 右上角的黑色漢堡 */
+        .menu_btn {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            /* 本來是inline 所以寬高沒反應 */
+            display: block;
+            /* 父層是灰色那條 */
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        /* 隱藏字 */
+        .menu_btn span {
+            opacity: 0;
+            color: #fff;
+        }
+        /* 設定menu_btn的樣式 也就是漢堡 */
+        .menu_btn::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 36px;
+            /* 中間的槓槓 */
+            background-color: #aaa;
+            left: 2px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            /* 上和下的槓槓 */
+            box-shadow: 0 8px 0 #aaa,0 -8px 0 #aaa;
+        }
+        /* 粉色區塊 */
+        nav {
+            width: 80%;
+            /* 視窗高度 viewport height
+            Relative to 1% of the height of the viewport */
+            height: calc(100vh - 50px);
+            background-color: #fcc;
+            position: absolute;
+            top: 50px;
+            left: -100%;
+            transition: .5s;
+        }
+        nav a {
+            display: block;
+            text-decoration: none;
+            color: rgb(107, 128, 199);
+            padding: 10px 20px;
+            border-bottom: 1px solid #000;
+        }
+        /* 當menu_control是checked 也就是打勾的時候 選取到header後面的nav */
+        /*  ~  是同層選取後方的東西 */
+        #menu_control:checked ~ .header nav {
+            left: 0;
+        }
+        /* 大於768px */
+        @media screen and (min-width:768px) {
+            .menu_btn {
+                display: none;
+            }
+            .header {
+                display: flex;
+                /* 空格在中間 所以link移到最右邊 */
+                justify-content: space-between;
+                /* 垂直置中 */
+                align-items: center;
+            }
+            nav {
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+            }
+            nav a {
+                border-bottom: none;
+            }   
+        }
+        img {
+            vertical-align: bottom;
+        }
+        /* .item-group {
+            display: flex;
+        } */
+        .footer {
+            background-color: #333;
+            color: #aaa;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .item-group {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .banner img {
+            width: 100%;
+        }
+        .title {
+            margin: 0 0 20px;
+            padding: 30px 10px;
+            background-color: #ccc;
+        }
+        .title h2 {
+            text-align: center;
+            font-size: 46px;
+        }
+        .title p {
+            font-size: 22px;
+            text-align: center;
+        }
+        .item {
+            margin: 0 10px 40px;
+        }
+        .item .text h3 {
+            font-size: 24px;
+            text-align: center;
+        }
+        .item .pic img{
+            width: 100%;
+        }
+        
+        @media screen and (min-width: 768px) {
+            .item-group {
+                display: flex;
+            }
+            /* 只有桌機才會出現service */
+            .service {
+            margin: 60px 0;
+            background-color: #ffa;
+            }
+            .service .item {
+                display: flex;
+                margin: auto;
+            }
+            .service .item .pic,
+            .service .item .text {
+                width: 50%;
+                margin: 0;
+            }
+            .service .item .text {
+                box-sizing: border-box;
+                display: flex;
+                padding: 0 20px;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 打勾勾 -->
+    <input type="checkbox" name="" id="menu_control">
+    <div class="header">
+        <h1 class="logo">
+            <a href="#">
+                <img src="https://picsum.photos/60/40/?random=10">
+            </a>
+        </h1>
+        <!-- 漢堡選單 -->
+        <label for="menu_control" class="menu_btn">
+            <span>選單</span>
+        </label>
+        <nav>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+        </nav>
+    </div>
+    <div class="banner">
+        <img src="https://picsum.photos/1400/500?random=1" alt="">
+    </div>
+    <div class="about">
+        <!-- 做固定寬 -->
+        <div class="wrap">
+            <div class="title">
+                <h2>關於我們</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, nobis saepe voluptas qui incidunt
+                    recusandae impedit blanditiis aut laudantium quisquam. Debitis modi aliquam nostrum maiores animi
+                    blanditiis vel reiciendis atque.</p>
+            </div>
+            <!-- 做項目 改這裡即可 -->
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=11">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=12">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=13">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service">
+        <div class="wrap">
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=10">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="about">
+        <!-- 做固定寬 -->
+        <div class="wrap">
+            <div class="title">
+                <h2>關於我們</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, nobis saepe voluptas qui incidunt
+                    recusandae impedit blanditiis aut laudantium quisquam. Debitis modi aliquam nostrum maiores animi
+                    blanditiis vel reiciendis atque.</p>
+            </div>
+            <!-- 做項目 改這裡即可 -->
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=21">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=22">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=23">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/300/200/?random=2">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>一些通常某個選項當前位置被人臺灣加工成功瀏覽次數加強世紀，從事加入時間為此，專利前面素質查看放下一直總統整理研發，上漲。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        &copy; copyright 2022 by nicole
+    </div>
+</body>
+</html>

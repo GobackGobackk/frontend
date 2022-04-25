@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-a {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            background-color: #aaa;
+        }
+        .box-b {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            background-color: #faa;
+        }
+        .product-title {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-a">box-a</div>
+    <div class="box-b">box-b</div>
+    <div class="product-title">產品介紹</div>
+    <div class="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex libero deleniti veniam! Exercitationem cumque voluptates rem et asperiores minima sunt maiores in soluta nihil? Itaque voluptatem molestias dolore quasi ad.</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        // javascript 有錢就可以選取到
+        $(document).ready(function(){
+            $(".box-a").click(function(){
+                // toggle自動判斷是開還是關
+                // 如果是打開 就幫你關掉 如果是關掉 就幫你打開
+                $(".box-b").toggle();
+            })
+            // 雙引號或單引號都ok
+            $('.product-title').click(function(){
+                $('.content').toggle();
+            })
+        })
+
+    
+    </script>
+</body>
+</html>
